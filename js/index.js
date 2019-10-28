@@ -232,10 +232,11 @@ function countDuplicatesId(value, arrayIds) {
     return count;
 }
 
+//prueba github subida gjf
+//2 dfkjsbkljasbdlasd
+
 function deleteAllIds(id, arrayIds) {
     return arrayIds.filter(itemId => {
         return itemId != id;
         });
 }
-//prueba github subida gjf
-//2 dfkjsbkljasbdlasd
