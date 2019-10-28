@@ -237,5 +237,5 @@ function deleteAllIds(id, arrayIds) {
         return itemId != id;
         });
 }
-//prueba github subida
+//prueba github subida gjf
 //2 dfkjsbkljasbdlasd
