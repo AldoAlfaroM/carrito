@@ -238,3 +238,4 @@ function deleteAllIds(id, arrayIds) {
         });
 }
 //prueba github subida
+//2
