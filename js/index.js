@@ -117,8 +117,12 @@ async function loadProductCart() {
                             <p>${product.name}</p>
                             <p>${totalPrice.toFixed(2)}</p>
                             <p class="change-quantity">
-                                <button>-</button>
-                                <button>+</button>
+                                <button onClick="decreaseQuantity(${
+                                    product.id
+                                })">-</button>
+                                <button onClick="increaseQuantity(${
+                                    product.id
+                                })">+</button>
                             </p>
                             <p class="cart-product-delete">
                                 <button onClick=(deleteProductCart(${
@@ -155,7 +159,67 @@ function deleteProductCart(idProduct) {
         });
         localStorage.setItem(CART_PRODUCTOS, idsString);
     }
+    const idsLocalStorage = localStorage.getItem(CART_PRODUCTOS);
+    if(!idsLocalStorage) {
+        localStorage.removeItem(CART_PRODUCTOS);
+    }    
     loadProductCart();    
+}
+
+function increaseQuantity(idProduct) { 
+    const idProductsCart = localStorage.getItem(CART_PRODUCTOS);
+    const arrayIdProductsCart = idProductsCart.split(",");
+    arrayIdProductsCart.push(idProduct);
+
+    let count = 0;
+    let idsString  = "";
+    arrayIdProductsCart.forEach(id => {
+        count++;
+        if(count < arrayIdProductsCart.length) {
+            idsString += id + ",";
+        } else {
+            idsString += id;
+        }
+    });
+    localStorage.setItem(CART_PRODUCTOS, idsString);
+
+    //volver a habilitar boton despues de eliminar todo
+    const idsLocalStorage = localStorage.getItem(CART_PRODUCTOS);
+    if(!idsLocalStorage) {
+        localStorage.removeItem(CART_PRODUCTOS);
+    } 
+    loadProductCart();    
+}
+
+function decreaseQuantity(idProduct) {
+    const idProductsCart = localStorage.getItem(CART_PRODUCTOS);
+    const arrayIdProductsCart = idProductsCart.split(",");  
+    
+    const deleteItem = idProduct.toString();
+    let index = arrayIdProductsCart.indexOf(deleteItem);
+
+    if(index > -1) {
+        arrayIdProductsCart.splice(index, 1);
+    }
+
+    let count = 0;
+    let idsString = "";
+    arrayIdProductsCart.forEach(id => {
+        count++;
+        if(count < arrayIdProductsCart.length) {
+            idsString += id + ","
+        } else {
+            idsString += id;
+        }
+    })
+    localStorage.setItem(CART_PRODUCTOS, idsString);
+
+    //volver a habilitar boton despues de eliminar todo
+    const idsLocalStorage = localStorage.getItem(CART_PRODUCTOS);
+    if(!idsLocalStorage) {
+        localStorage.removeItem(CART_PRODUCTOS);
+    } 
+    loadProductCart();
 }
 
 function countDuplicatesId(value, arrayIds) {
