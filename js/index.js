@@ -232,8 +232,8 @@ function countDuplicatesId(value, arrayIds) {
     return count;
 }
 
-//prueba github subida gjf
-//2 dfkjsbkljasbdlasd
+//prueba github subida
+//2 
 
 function deleteAllIds(id, arrayIds) {
     return arrayIds.filter(itemId => {
